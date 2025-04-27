@@ -72,5 +72,3 @@ http.listen(PORT, () => {
 })
 
 app.set('io', io)
-
-//this is serverful function
