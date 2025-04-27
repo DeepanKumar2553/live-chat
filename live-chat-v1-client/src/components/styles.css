@@ -1,0 +1,494 @@
+html,
+body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.main-container {
+    background-color: #f4f5f8;
+    height: 93vh;
+    width: 95vw;
+    border-radius: 15px;
+    display: flex;
+}
+
+.sidebar-container {
+    border-radius: 15px;
+    flex: 0.3;
+    display: flex;
+    flex-direction: column;
+}
+
+.workArea-container {
+    border-radius: 15px;
+    flex: 0.7;
+    display: flex;
+    flex-direction: column;
+}
+
+.sb-header {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.sb-search {
+    background-color: white;
+    margin: 10px;
+    border-radius: 15px;
+    display: flex;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    align-items: center;
+}
+
+.search-bar {
+    outline: none;
+    border: none;
+    font-size: 1.10rem;
+}
+
+.sb-conversations {
+    background-color: white;
+    border-radius: 15px;
+    flex: 1;
+    margin: 10px;
+    overflow: scroll;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.sb-conversations::-webkit-scrollbar {
+    display: none;
+}
+
+.no-conversations-message {
+    font-size: large;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    margin: 20px;
+}
+
+.no-conversations-message p:last-child {
+    color: rgb(32, 252, 208);
+}
+
+.conversation-items {
+    display: grid;
+    grid-template-columns: 32px auto auto;
+    grid-template-rows: auto auto;
+    column-gap: 10px;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 15px;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.conversation-items:hover {
+    background-color: #d9d9d9;
+}
+
+.conversation-items:active {
+    background-color: white;
+}
+
+.conversation-icon {
+    grid-area: 1/1/3/2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d9d9d9;
+    font-family: "Segoe UI", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 2rem;
+    font-weight: bolder;
+    color: white;
+    height: 32px;
+    width: 32px;
+    padding: 0px 1px 10px 0px;
+    border-radius: 50%;
+}
+
+.conversation-name {
+    grid-area: 1/2/2/4;
+    font-family: "Segoe UI", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.conversation-message {
+    font-family: "Segoe UI", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.75rem;
+}
+
+.conversation-time {
+    display: flex;
+    justify-content: flex-end;
+    font-family: "Segoe UI", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.75rem;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.convo-name {
+    margin: -5px 0px 0px -3px;
+    font-size: smaller;
+    font-weight: light;
+}
+
+.chatArea-header {
+    background-color: white;
+    margin: 10px;
+    padding: 10px 5px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.chatArea-header>div:nth-child(2) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2.5px;
+    margin-left: 10px;
+    margin-right: auto;
+}
+
+.ca-name {
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: "Segoe UI", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.ca-time {
+    font-size: 0.75rem;
+    font-family: "Segoe UI", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.chatArea-container {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex: 1;
+}
+
+.chatArea-body {
+    flex: 1;
+    background-color: white;
+    margin: 10px;
+    border-radius: 15px;
+    padding: 10px 10px;
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: scroll;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.chatArea-body>* {
+    flex-shrink: 0;
+}
+
+.chatArea-body::-webkit-scrollbar {
+    display: none;
+}
+
+.chatArea-keyboard {
+    border-radius: 15px;
+    padding: 5px;
+}
+
+.ca-input {
+    flex: 1;
+    margin: 5px;
+}
+
+.other-message-component {
+    display: flex;
+    align-items: center;
+    margin: 5px;
+}
+
+.other-message-component>div:not(.convo-name) {
+    background-color: #d9d9d9;
+    margin: 5px 30px 5px 5px;
+    padding: 8px;
+    border-radius: 8px;
+    min-width: 9vw;
+    font-size: 16px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.other-message-icon {
+    flex-shrink: 0;
+    margin-left: -5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.my-message-component {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.my-message-component div {
+    background-color: #20fcd0;
+    margin: 5px 5px 5px 60px;
+    padding: 8px;
+    border-radius: 8px;
+    color: black !important;
+    font-size: 16px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.welcome-page-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-page-container p {
+    color: #25bb9d;
+    margin: 30px;
+    font-size: 1.1rem;
+}
+
+.create-group-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-group-container div {
+    background-color: white;
+    padding: 5px 10px 5px 10px;
+    border-radius: 15px;
+    flex: 1;
+    margin: 10px 20px 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.cg-input {
+    flex: 0.9;
+}
+
+.login-container {
+    flex: 1;
+    display: flex;
+    overflow: hidden !important;
+}
+
+.login-image-container {
+    flex: 0.3;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-details {
+    flex: 0.7;
+    background-color: white;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login-details h1 {
+    color: #20fcd0;
+}
+
+.create-contact-container {
+    flex: 1;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.cc-header div {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 5px;
+    font-weight: bolder;
+    font-size: 1.1rem;
+    color: dimgray;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.cc-body {
+    flex: 1;
+    overflow: scroll;
+}
+
+.cc-body::-webkit-scrollbar {
+    display: none;
+}
+
+.cc-contacts {
+    transition-duration: 0.3s;
+}
+
+/* .cc-contacts:hover {
+    background-color: rgb(226, 226, 226);
+}
+
+.cc-contacts:active {
+    background-color: white;
+} */
+
+.dark {
+    background-color: #2d3942 !important;
+    color: whitesmoke !important;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px !important;
+}
+
+.dark-2 {
+    background-color: #4c5a66 !important;
+    color: whitesmoke !important;
+}
+
+.dark-name {
+    color: whitesmoke !important;
+}
+
+.send-icon {
+    color: #20fcd0 !important;
+}
+
+.login-details p span {
+    color: rgb(39, 54, 254);
+}
+
+.logout-menu{
+    background-color:rgba(0, 0, 0, 0.30);
+}
+
+body.react-logout {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    transition: none !important;
+}
+
+.form-wrapper {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+input[type="password"]::-ms-reveal {
+    display: none;
+}
+
+/* For all browsers' autofill icons */
+input::-webkit-contacts-auto-fill-button,
+input::-webkit-credentials-auto-fill-button {
+    visibility: hidden;
+    display: none !important;
+    pointer-events: none;
+    position: absolute;
+    right: -100vw;
+}
+
+
+
+
+
+@media (max-width: 768px) {
+}
+
+
+
+
+
+@media (max-width: 576px) {
+    .login-container{
+        flex-direction: column;
+        padding: 10px;
+        min-height: 100vh;
+        height: auto;
+    }
+
+    .login-image-container{
+        flex: 0.1;
+    }
+    
+    .login-image-container img{
+        width: 150px;
+    }
+
+    .welcome-page-container{
+        display: none;
+    }
+
+    .sidebar-container{
+        flex: 1;
+    }
+}
+
+
+
+
+
+
+
+@media (max-width: 480px) {
+    .login-container {
+            padding: 10px;
+            min-height: 100vh;
+            height: auto;
+        }
+
+        .login-image-container{
+            flex: 0.2;
+        }
+
+        .login-image-container img {
+            width: 120px !important;
+        }
+    
+        .login-details {
+            padding: 0 10px !important;
+        }
+    
+        .login-details h1 {
+            font-size: 1.5rem !important;
+            text-align: center;
+        }
+    
+        .MuiTextField-root {
+            width: 100% !important;
+            margin: 8px 0 !important;
+        }
+    
+        .login-btn {
+            width: 100% !important;
+            margin: 15px 0 !important;
+        }
+    
+        .login-details p {
+            flex-direction: column;
+            text-align: center;
+        }
+    
+        .login-details span {
+            margin-top: 8px !important;
+            display: block;
+        }
+}
