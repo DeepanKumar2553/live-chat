@@ -106,12 +106,7 @@ const AvailableGroups = () => {
                       },
                     };
 
-                    axios
-                      .put(
-                        `http://localhost:5000/api/v1/chats/joinGroup/${group._id}`,
-                        {},
-                        config
-                      )
+                    API.put(`/api/v1/chats/joinGroup/${group._id}`, {}, config)
                       .then((response) => {
                         dispatch(refreshSidebarFun());
                         nav(`/app/chats/${group._id}/${group.chatName}`);
