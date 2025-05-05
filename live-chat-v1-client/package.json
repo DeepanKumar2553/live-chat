@@ -19,10 +19,10 @@
     "socket.io-client": "^4.8.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "serve -s build",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "preinstall": "npm install --save-dev @babel/plugin-proposal-private-property-in-object",
+    "postbuild": "react-scripts build && sh -c 'cp -r build/* public/'"
   },
   "eslintConfig": {
     "extends": [
