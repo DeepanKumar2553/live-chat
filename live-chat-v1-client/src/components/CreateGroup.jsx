@@ -11,7 +11,7 @@ import {
 import DoneOutlineIcon from "@mui/icons-material/DoneOutline";
 import "./styles.css";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+import API from "./services/api";
 import { useNavigate } from "react-router-dom";
 import { refreshSidebarFun } from "../features/refreshSidebar";
 import Toaster from "../components/Toaster";
@@ -37,15 +37,14 @@ const CreateGroup = () => {
       },
     };
 
-    axios
-      .post(
-        "http://localhost:5000/api/v1/chats/createGroup",
-        {
-          name: groupName,
-          users: userData._id,
-        },
-        config
-      )
+    API.post(
+      "/api/v1/chats/createGroup",
+      {
+        name: groupName,
+        users: userData._id,
+      },
+      config
+    )
       .then((response) => {
         const createdGroup = response.data;
         dispatch(refreshSidebarFun());
@@ -99,7 +98,7 @@ const CreateGroup = () => {
             value={groupName}
             onChange={(e) => {
               setGroupName(e.target.value);
-              setGroupStatus(null); // Clear error when typing
+              setGroupStatus(null);
             }}
           />
           <IconButton

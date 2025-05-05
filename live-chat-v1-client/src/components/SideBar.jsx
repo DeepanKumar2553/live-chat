@@ -22,7 +22,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTheme } from "../features/themeSlice";
 import { setNormalRefresh } from "../features/normalRefresh";
-import axios from "axios";
+import API from "./services/api";
 import { io } from "socket.io-client";
 
 // export const convoArray=[
@@ -46,7 +46,7 @@ const SideBar = () => {
 
   const socket = useMemo(
     () =>
-      io("http://localhost:5000", {
+      io(process.env.REACT_APP_API_BASE_URL, {
         withCredentials: true,
         autoConnect: true,
       }),
@@ -69,8 +69,7 @@ const SideBar = () => {
       },
     };
 
-    axios
-      .get("http://localhost:5000/api/v1/chats/", config)
+    API.get("/api/v1/chats/", config)
       .then((response) => {
         setConversations(response.data);
         dispatch(setNormalRefresh(false));

@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AnimatePresence, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { refreshSidebarFun } from "../features/refreshSidebar";
-import axios from "axios";
+import API from "./services/api";
 import { setNormalRefresh } from "../features/normalRefresh";
 
 const AvailableGroups = () => {
@@ -30,12 +30,10 @@ const AvailableGroups = () => {
       },
     };
 
-    axios
-      .get("http://localhost:5000/api/v1/chats/fetchGroups", config)
-      .then((response) => {
-        SetGroups(response.data);
-        setLoading(false);
-      });
+    API.get("/api/v1/chats/fetchGroups", config).then((response) => {
+      SetGroups(response.data);
+      setLoading(false);
+    });
   }, [userData.token]);
 
   const filteredGroups = useMemo(() => {

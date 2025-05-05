@@ -6,7 +6,7 @@ import Img from "../assests/live-chat_512px.png";
 import { useDispatch, useSelector } from "react-redux";
 import { AnimatePresence, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import API from "./services/api";
 import { refreshSidebarFun } from "../features/refreshSidebar";
 import { setNormalRefresh } from "../features/normalRefresh";
 
@@ -36,8 +36,7 @@ const CreateContact = () => {
       },
     };
 
-    axios
-      .get("http://localhost:5000/api/v1/users/fetchUsers", config)
+    API.get("/api/v1/users/fetchUsers", config)
       .then((data) => {
         setUsers(data.data);
         setLoading(false);
@@ -57,7 +56,7 @@ const CreateContact = () => {
     return users.filter(
       (user) =>
         user.name.toLowerCase().includes(searchTerm) &&
-        user._id !== userData?._id // Exclude current user
+        user._id !== userData?._id
     );
   }, [users, searchQuery, userData?._id]);
 
@@ -120,18 +119,16 @@ const CreateContact = () => {
                           Authorization: `Bearer ${userData.token}`,
                         },
                       };
-                      await axios
-                        .post(
-                          "http://localhost:5000/api/v1/chats/",
-                          { userId: user._id },
-                          config
-                        )
-                        .then((res) => {
-                          dispatch(refreshSidebarFun());
-                          nav(
-                            `/app/chats/${res.data._id}/${res.data.users[1].name}`
-                          );
-                        });
+                      await API.post(
+                        "/api/v1/chats/",
+                        { userId: user._id },
+                        config
+                      ).then((res) => {
+                        dispatch(refreshSidebarFun());
+                        nav(
+                          `/app/chats/${res.data._id}/${res.data.users[1].name}`
+                        );
+                      });
                     } catch (err) {
                       console.log("Error creating chat", err);
                     }

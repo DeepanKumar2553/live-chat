@@ -7,7 +7,7 @@ import OtherMessage from "./OtherMessage";
 import MyMessage from "./MyMessage";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import API from "./services/api";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import {
   Dialog,
@@ -46,7 +46,7 @@ const ChatArea = () => {
 
   const socket = useMemo(
     () =>
-      io("http://localhost:5000", {
+      io(process.env.REACT_APP_API_BASE_URL, {
         withCredentials: true,
         autoConnect: true,
       }),
@@ -70,11 +70,9 @@ const ChatArea = () => {
           Authorization: `Bearer ${token}`,
         },
       };
-      axios
-        .get("http://localhost:5000/api/v1/message/" + chatId, config)
-        .then(({ data }) => {
-          setAllMessages(data);
-        });
+      API.get("/api/v1/message/" + chatId, config).then(({ data }) => {
+        setAllMessages(data);
+      });
     } catch (error) {
       console.error("Error fetching messages:", error);
     }
@@ -102,10 +100,7 @@ const ChatArea = () => {
         const config = {
           headers: { Authorization: `Bearer ${token}` },
         };
-        const response = await axios.get(
-          `http://localhost:5000/api/v1/chats/${chatId}`,
-          config
-        );
+        const response = await API.get(`/api/v1/chats/${chatId}`, config);
         console.log("datas", response.data);
         setIsGroupChat(response.data.isGroupChat);
         setIsGroupAdmin(response.data.groupAdmin === userDataId);
@@ -127,15 +122,14 @@ const ChatArea = () => {
       },
     };
 
-    axios
-      .post(
-        "http://localhost:5000/api/v1/message",
-        {
-          content: messageContent,
-          chatId: chatId,
-        },
-        config
-      )
+    API.post(
+      "/api/v1/message",
+      {
+        content: messageContent,
+        chatId: chatId,
+      },
+      config
+    )
       .then(({ data }) => {
         console.log("Message sent:", data);
         setMessageContent("");
@@ -161,11 +155,7 @@ const ChatArea = () => {
         },
       };
 
-      await axios.post(
-        "http://localhost:5000/api/v1/chats/groupExit",
-        { chatId },
-        config
-      );
+      await API.post("/api/v1/chats/groupExit", { chatId }, config);
 
       dispatch(refreshSidebarFun());
       nav("/app/welcome");
@@ -207,10 +197,7 @@ const ChatArea = () => {
         headers: { Authorization: `Bearer ${userData?.token}` },
       };
 
-      await axios.delete(
-        `http://localhost:5000/api/v1/chats/${chatId}`,
-        config
-      );
+      await API.delete(`/api/v1/chats/${chatId}`, config);
 
       dispatch(refreshSidebarFun());
       nav("/app/welcome");
