@@ -16,8 +16,13 @@
       "dest": "index.js"
     },
     {
+      "src": "/_next/static/(.*)",
+      "dest": "/public/_next/static/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/public/$1"
+      "dest": "/public/index.html",
+      "status": 200
     }
   ]
 }
