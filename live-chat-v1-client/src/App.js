@@ -9,24 +9,27 @@ import CreateContact from './components/CreateContact.jsx'
 import AvailableGroups from './components/AvailableGroups.jsx'
 import { useSelector } from 'react-redux'
 import SignUp from './pages/SignUp.jsx'
+import { HashRouter as Router } from 'react-router-dom';
 
 function App() {
   const theme = useSelector((state) => state.themeKey)
 
   return (
-    <div className={"app" + (theme ? "" : " dark")}>
-      <Routes>
-        <Route path='/' element={<Login />} />
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='app' element={<MainContainer />}>
-          <Route path='welcome' element={<WelcomePage />} />
-          <Route path='chats/:chatId/:name' element={<ChatArea />} />
-          <Route path='create-group' element={<CreateGroup />} />
-          <Route path='contacts' element={<CreateContact />} />
-          <Route path='groups' element={<AvailableGroups />} />
-        </Route>
-      </Routes>
-    </div>
+    <Router basename={process.env.PUBLIC_URL}>
+      <div className={"app" + (theme ? "" : " dark")}>
+        <Routes>
+          <Route path='/' element={<Login />} />
+          <Route path='/signup' element={<SignUp />} />
+          <Route path='app' element={<MainContainer />}>
+            <Route path='welcome' element={<WelcomePage />} />
+            <Route path='chats/:chatId/:name' element={<ChatArea />} />
+            <Route path='create-group' element={<CreateGroup />} />
+            <Route path='contacts' element={<CreateContact />} />
+            <Route path='groups' element={<AvailableGroups />} />
+          </Route>
+        </Routes>
+      </div>
+    </Router>
   )
 }
 
