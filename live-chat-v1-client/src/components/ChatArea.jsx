@@ -7,7 +7,7 @@ import OtherMessage from "./OtherMessage";
 import MyMessage from "./MyMessage";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import API from "./services/api";
+import API from "../services/api";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import {
   Dialog,

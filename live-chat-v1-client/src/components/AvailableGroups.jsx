@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AnimatePresence, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { refreshSidebarFun } from "../features/refreshSidebar";
-import API from "./services/api";
+import API from "../services/api";
 import { setNormalRefresh } from "../features/normalRefresh";
 
 const AvailableGroups = () => {

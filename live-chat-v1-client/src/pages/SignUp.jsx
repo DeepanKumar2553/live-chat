@@ -10,7 +10,7 @@ import {
   IconButton,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import API from "./services/api";
+import API from "../services/api";
 import Toaster from "../components/Toaster";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 

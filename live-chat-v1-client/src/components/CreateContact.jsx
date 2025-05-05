@@ -6,7 +6,7 @@ import Img from "../assests/live-chat_512px.png";
 import { useDispatch, useSelector } from "react-redux";
 import { AnimatePresence, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import API from "./services/api";
+import API from "../services/api";
 import { refreshSidebarFun } from "../features/refreshSidebar";
 import { setNormalRefresh } from "../features/normalRefresh";
 

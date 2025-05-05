@@ -22,7 +22,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTheme } from "../features/themeSlice";
 import { setNormalRefresh } from "../features/normalRefresh";
-import API from "./services/api";
+import API from "../services/api";
 import { io } from "socket.io-client";
 
 // export const convoArray=[
