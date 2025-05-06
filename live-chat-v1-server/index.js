@@ -3,10 +3,13 @@ const app = express()
 const http = require('http').createServer(app)
 const io = require('socket.io')(http, {
     cors: {
-        origin: 'http://localhost:3000',
+        origin: [
+            'https://live-chat-v1-client.vercel.app',
+            'http://localhost:3000'
+        ],
         methods: ['GET', 'POST'],
         credentials: true
-    }
+    }, transports: ['websocket', 'polling']
 })
 const dotenv = require('dotenv')
 const cors = require('cors')
