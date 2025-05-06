@@ -34,8 +34,8 @@ const connectDb = async () => {
 connectDb()
 
 app.use(cors({
-    origin: 'https://live-chat-v1-client.vercel.app',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    origin: ['https://live-chat-v1-client.vercel.app', 'http://localhost:3000'],
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
     credentials: true
 }))
 app.use(express.json())
